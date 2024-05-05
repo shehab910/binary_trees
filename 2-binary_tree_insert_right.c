@@ -2,16 +2,16 @@
 
 /**
  * binary_tree_insert_right - Inserts a new right-child node.
- * @p: Pointer to the node for right-child insertion.
- * @v: Value for the new node.
- * Return: Pointer to created node on success NULL on failure or if p NULL
+ * @parent: Pointer to the node for right-child insertion.
+ * @value: Value for the new node.
+ * Return: Pointer to created node on success NULL on failure or if parent NULL
  */
 
-binary_tree_t *binary_tree_insert_right(binary_tree_t *p, int v)
+binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value)
 {
 	binary_tree_t *nn;
 
-	if (p == NULL)
+	if (parent == NULL)
 	{
 		return (NULL);
 	}
@@ -21,20 +21,20 @@ binary_tree_t *binary_tree_insert_right(binary_tree_t *p, int v)
 	{
 		return (NULL);
 	}
-	if (p->right != NULL)
+	if (parent->right != NULL)
 	{
-		nn->right = p->right;
-		nn->right->p = nn;
-		nn->p = p;
-		p->right = nn;
+		nn->right = parent->right;
+		nn->right->parent = nn;
+		nn->parent = parent;
+		parent->right = nn;
 	}
 	else
 	{
-		p->right = nn;
-		nn->p = p;
+		parent->right = nn;
+		nn->parent = parent;
 		nn->right = NULL;
 	}
-	nn->n = v;
+	nn->n = value;
 	nn->left = NULL;
 	return (nn);
 }
