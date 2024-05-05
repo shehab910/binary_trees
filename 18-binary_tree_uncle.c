@@ -1,47 +1,47 @@
 #include "binary_trees.h"
 
 /**
-  * binary_tree_uncle - this function finds the uncle of a node
+  * binary_tree_uncle - this function finds the uncle of a n
   *
-  * @node: this is a pointer to the node to find the uncle
+  * @n: this is a pointer to the n to find the uncle
   * Return: a pointer to the sibling on success, NULL on failure
   */
 
-binary_tree_t *binary_tree_uncle(binary_tree_t *node)
+binary_tree_t *binary_tree_uncle(binary_tree_t *n)
 {
 	int left, right;
 
-	if (node == NULL)
+	if (n == NULL)
 	{
 		return (NULL);
 	}
-	if (node->p == NULL)
+	if (n->parent == NULL)
 	{
 		return (NULL);
 	}
-	if (node->p->p == NULL)
+	if (n->parent->parent == NULL)
 	{
 		return (NULL);
 	}
-	if (node->p->p->left == NULL || node->p->p->right == NULL)
+	if (n->parent->parent->left == NULL || n->parent->parent->right == NULL)
 	{
 		return (NULL);
 	}
 
-	left = node->p->p->left->n;
-	right = node->p->p->right->n;
+	left = n->parent->parent->left->n;
+	right = n->parent->parent->right->n;
 
 	if (left == right)
 	{
-		return (node->p->left);
+		return (n->parent->left);
 	}
-	else if (left == node->p->n)
+	else if (left == n->parent->n)
 	{
-		return (node->p->p->right);
+		return (n->parent->parent->right);
 	}
-	else if (right == node->p->n)
+	else if (right == n->parent->n)
 	{
-		return (node->p->p->left);
+		return (n->parent->parent->left);
 	}
 	else
 	{
